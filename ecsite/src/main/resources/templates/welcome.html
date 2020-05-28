@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+<title>ECサイト</title>
+</head>
+<body>
+
+<header><h1>My EC Site</h1></header>
+<table id = "admintable">
+	<thead> <!--テーブルのヘッド -->
+		<tr>
+			<th>ID</th><th>商品</th><th>価格</th><th>削除</th>
+		</tr>
+	</thead>
+	<tbody> <!--tableの本体を表す  -->
+		<tr th:each="item: ${goods}">
+			<td th:text="${item.id}"/>
+			<td th:text="${item.goodsName}"/>
+			<td th:text="${item.price}"/>
+			<td><button type="submit" class="deleteBtn">削除</button></td>
+		</tr>
+	</tbody>
+</table>
+
+<form name="goodsForm" id="adminPage" method="post" action="/#" th:action="@{/myecsite/admin/goodsMst}">
+	<button type="submit" th:if="${userName != null}">新規追加</button>
+	<input type="text" name="useName" th:value="${userName}"/>
+	<input type="text" name="password" th:value="${password}"/>
+</form>
+</body>
+</html>
+
